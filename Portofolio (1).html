@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio | Asih Hasanah</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1b2430;
+    --paper:#faf7f2;
+    --card:#ffffff;
+    --teal:#2f5d62;
+    --teal-light:#e8f0ef;
+    --amber:#d98a3d;
+    --amber-light:#faeada;
+    --slate:#6b7280;
+    --line:#e4ddd0;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:15.5px;
+    line-height:1.65;
+  }
+
+  .topbar{
+    height:6px;
+    background:linear-gradient(90deg, var(--teal) 0%, var(--amber) 100%);
+  }
+
+  a{color:inherit;}
+
+  .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.68rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--amber);
+    font-weight:500;
+  }
+
+  .page{
+    max-width:960px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+    display:grid;
+    grid-template-columns:250px 1fr;
+    gap:44px;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    position:sticky;
+    top:32px;
+    align-self:start;
+  }
+
+  .avatar-wrap{
+    position:relative;
+    width:150px;
+    margin-bottom:22px;
+  }
+
+  .profile-img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:center 25%;
+    border:5px solid var(--card);
+    box-shadow:0 10px 26px rgba(27,36,48,.14);
+    display:block;
+  }
+
+  .progress-ring{
+    position:absolute;
+    inset:0;
+    transform:rotate(-90deg);
+  }
+
+  .name-block h1{
+    font-family:'Fraunces',serif;
+    font-size:1.7rem;
+    font-weight:600;
+    line-height:1.15;
+    margin-bottom:6px;
+  }
+
+  .name-block .role{
+    color:var(--teal);
+    font-weight:500;
+    font-size:.95rem;
+    margin-bottom:18px;
+  }
+
+  .semester-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--amber-light);
+    border:1px solid #f0d5ae;
+    color:#8a5620;
+    padding:6px 12px 6px 8px;
+    border-radius:100px;
+    font-size:.78rem;
+    font-weight:600;
+    margin-bottom:26px;
+  }
+
+  .semester-chip .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--amber);
+    display:inline-block;
+  }
+
+  .side-section{margin-bottom:28px;}
+
+  .side-section .label{display:block;margin-bottom:12px;}
+
+  .contact-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .contact-list li{display:flex;align-items:flex-start;gap:10px;font-size:.87rem;color:var(--slate);}
+  .contact-list i{color:var(--teal);width:14px;margin-top:3px;}
+  .contact-list a{text-decoration:none;}
+  .contact-list a:hover{color:var(--teal);}
+
+  .skill-group{margin-bottom:16px;}
+  .skill-group h4{
+    font-size:.78rem;
+    color:var(--ink);
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.7rem;
+    background:var(--teal-light);
+    color:var(--teal);
+    padding:4px 9px;
+    border-radius:5px;
+  }
+
+  /* ---------- MAIN ---------- */
+  main section{margin-bottom:42px;}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:20px;
+  }
+
+  .section-head h2{
+    font-family:'Fraunces',serif;
+    font-size:1.35rem;
+    font-weight:600;
+  }
+
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  .about p{color:#3a4452;margin-bottom:12px;max-width:56ch;}
+  .about p:last-child{margin-bottom:0;}
+
+  /* timeline */
+  .timeline{position:relative;padding-left:26px;}
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:5px;top:6px;bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .t-item{position:relative;margin-bottom:28px;}
+  .t-item:last-child{margin-bottom:0;}
+  .t-item::before{
+    content:'';
+    position:absolute;
+    left:-26px;top:4px;
+    width:11px;height:11px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--teal);
+  }
+  .t-item.current::before{background:var(--amber);border-color:var(--amber);}
+
+  .t-title{font-weight:600;font-size:1rem;}
+  .t-sub{color:var(--teal);font-size:.88rem;font-weight:500;margin-top:2px;}
+  .t-date{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--slate);margin:6px 0 10px;}
+  .t-desc{padding-left:18px;color:#4b5563;font-size:.9rem;}
+  .t-desc li{margin-bottom:4px;}
+
+  /* projects */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+  }
+
+  .project-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .project-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 28px rgba(27,36,48,.08);
+  }
+
+  .project-icon{
+    width:38px;height:38px;
+    border-radius:9px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:14px;
+    font-size:.95rem;
+  }
+  .project-icon.teal{background:var(--teal-light);color:var(--teal);}
+  .project-icon.amber{background:var(--amber-light);color:#a1611f;}
+
+  .project-title{font-weight:600;margin-bottom:4px;font-family:'Fraunces',serif;font-size:1.05rem;}
+  .project-tech{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--amber);margin-bottom:10px;letter-spacing:.03em;}
+  .project-card p{font-size:.87rem;color:#4b5563;margin-bottom:14px;}
+
+  .project-links{display:flex;gap:14px;}
+  .project-link{
+    font-size:.82rem;
+    text-decoration:none;
+    color:var(--teal);
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-weight:500;
+  }
+  .project-link:hover{text-decoration:underline;}
+
+  /* footer contact */
+  .contact-cta{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:14px;
+    padding:30px 32px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+  }
+  .contact-cta h3{
+    font-family:'Fraunces',serif;
+    font-size:1.2rem;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .contact-cta p{color:#c7cdd6;font-size:.85rem;}
+  .cta-links{display:flex;gap:14px;flex-wrap:wrap;}
+  .cta-links a{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.08);
+    padding:9px 14px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:.82rem;
+    color:var(--paper);
+    border:1px solid rgba(255,255,255,.12);
+    transition:background .2s ease;
+  }
+  .cta-links a:hover{background:rgba(255,255,255,.16);}
+  .cta-links i{color:var(--amber);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:760px){
+    .page{grid-template-columns:1fr;padding:32px 18px 60px;}
+    .sidebar{position:static;}
+    .avatar-wrap{margin:0 auto 18px;}
+    .name-block{text-align:center;}
+    .semester-chip{display:inline-flex;margin-left:50%;transform:translateX(-50%);}
+    .contact-list{align-items:center;}
+    .contact-cta{flex-direction:column;text-align:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .project-card{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="avatar-wrap">
+      <img src="Foto ku.jpg" alt="Foto Profil Asih Hasanah" class="profile-img">
+        <circle cx="95" cy="789" r="90" fill="none" stroke="#e4ddd0" stroke-width="3"></circle>
+        <circle cx="75" cy="80" r="77" fill="none" stroke="#d98a3d" stroke-width="3"
+          stroke-dasharray="500" stroke-dashoffset="0" stroke-linecap="round"></circle>
+      </svg>
+    </div>
+
+    <div class="name-block">
+      <h1>Asih Hasanah</h1>
+      <div class="role">Mahasiswa Teknik Informatika &middot; Staff GA</div>
+    </div>
+
+    <div class="semester-chip">
+      <span class="dot"></span> Semester 8 &mdash; Tugas Akhir
+    </div>
+
+    <div class="side-section">
+      <span class="label">Kontak</span>
+      <ul class="contact-list">
+        <li><i class="fas fa-envelope"></i> Hasyaoktanisa11@gmail.com</li>
+        <li><i class="fas fa-phone"></i> 0813-1702-7719</li>
+        <li><i class="fab fa-instagram"></i>asih_hasanah06</li>
+        <li><i class="fas fa-map-marker-alt"></i> Kota Tangerang</li>
+      </ul>
+    </div>
+
+    <div class="side-section">
+      <span class="label">Keahlian</span>
+      <div class="skill-group">
+        <h4>Teknologi</h4>
+        <div class="chip-row">
+          <span class="chip">HTML/CSS</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">PHP</span>
+          <span class="chip">WordPress</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <div class="chip-row">
+          <span class="chip">Git</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">Figma</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Lainnya</h4>
+        <div class="chip-row">
+          <span class="chip">Bahasa Inggris</span>
+          <span class="chip">Manajemen Waktu</span>
+          <span class="chip">Kerja Tim</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <section class="about">
+      <div class="section-head"><h2>Tentang Saya</h2><div class="rule"></div></div>
+      <p>
+        Mahasiswa aktif Teknik Informatika semester 8 di Universitas Pamulang, saat ini sedang menyusun tugas akhir dengan
+        ketertarikan pada pengembangan web. Sambil menyelesaikan studi, bekerja sebagai Staff General Affairs di
+        perusahaan F&amp;B sekaligus terus mengasah kemampuan pemrograman lewat proyek-proyek kecil.
+      </p>
+      <p>
+        Memiliki kemampuan bahasa Inggris dasar dan terbiasa bekerja dalam tim. Terlatih mengelola waktu antara
+        kuliah, pekerjaan, dan pengembangan diri secara mandiri.
+      </p>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Pendidikan &amp; Pengalaman</h2><div class="rule"></div></div>
+      <div class="timeline">
+        <div class="t-item current">
+          <div class="t-title">S1 Teknik Informatika</div>
+          <div class="t-sub">Universitas Pamulang</div>
+          <div class="t-date">2022 &mdash; Sekarang &middot; Semester 8</div>
+        </div>
+        <div class="t-item current">
+          <div class="t-title">Staff General Affairs</div>
+          <div class="t-sub">Perusahaan F&amp;B</div>
+          <div class="t-date">2021 &mdash; Sekarang</div>
+          <ul class="t-desc">
+            <li>Mengelola administrasi kantor dan dokumen</li>
+            <li>Koordinasi maintenance fasilitas gedung</li>
+            <li>Pengelolaan inventaris kantor</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>Proyek</h2><div class="rule"></div></div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon teal"><i class="fas fa-clipboard-check"></i></div>
+          <div class="project-title">Sistem Absensi Sekolah</div>
+          <div class="project-tech">MA Al Riyadul Jannah &middot; 2025</div>
+          <p>Sistem absensi digital untuk mencatat kehadiran siswa, menggantikan pencatatan manual agar lebih rapi dan cepat direkap.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-icon amber"><i class="fas fa-store"></i></div>
+          <div class="project-title">Website Company Profile UMKM</div>
+          <div class="project-tech">HTML &middot; CSS &middot; JavaScript</div>
+          <p>Website responsif untuk UMKM lokal dengan halaman produk, layanan, dan kontak.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-icon teal"><i class="fas fa-mobile-alt"></i></div>
+          <div class="project-title">Web Mobile Pembayaran</div>
+          <div class="project-tech">PHP &middot; MySQL</div>
+          <p>Aplikasi web mobile untuk proses pembayaran, mencakup alur transaksi dan riwayat pembayaran pengguna.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-icon amber"><i class="fas fa-warehouse"></i></div>
+          <div class="project-title">Sistem Inventory Gudang</div>
+          <div class="project-tech">PHP &middot; MySQL</div>
+          <p>Aplikasi CRUD untuk mengelola stok barang gudang, mulai dari barang masuk, keluar, hingga laporan stok.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-icon teal"><i class="fas fa-map-location-dot"></i></div>
+          <div class="project-title">Website Profil Daerah</div>
+          <div class="project-tech">HTML &middot; CSS &middot; JavaScript</div>
+          <p>Website informasi profil sebuah daerah, menampilkan potensi wilayah, budaya, dan informasi umum lainnya.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact-cta">
+        <div>
+          <h3>Mari terhubung</h3>
+          <p>Terbuka untuk kolaborasi proyek maupun peluang magang/kerja di bidang web development.</p>
+        </div>
+        <div class="cta-links">
+          <a href="https://wa.me/6281317027719"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="linkedin.com/in/asih-hasanah-5359a5423"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/Hasanahasih"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>
